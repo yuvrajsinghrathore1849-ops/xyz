@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stuck Fit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+         body { font-family: 'Helvetica Neue', sans-serif; background: #add8e6; } /* Light blue background for entire site */
+        .hero { background: url('https://via.placeholder.com/1920x600?text=Stuck+Fit+Hero') no-repeat center/cover; height: 60vh; display: flex; align-items: center; justify-content: center; color: blue; text-shadow: 6px 6px 12px rgba(0,0,0,0.5); }
+        .hero h1 { color: #5dade2; font-weight: 1200; text-align: center; font-size: 11.5rem; } /* Medium blue, bold, centered for hero title */
+        .product-card { transition: transform 0.3s; }
+        .product-card:hover { transform: scale(1.05); }
+        .price { color: #e74c3c; font-weight: bold; }
+        nav { background: #000; }
+        nav a { color: #add8e6; } /* Light blue for nav links */
+        .brand-box { background: #5dade2; color: white; padding: 0.5rem 2.5rem; border-radius: 6px; display: inline-block; font-weight: 900; min-width: 200px; text-align: center; } /* Medium blue, wider box, bold text for navbar */
+        .carousel-item img { height: 400px; object-fit: cover; } /* Carousel image sizing */
+        .carousel-caption { background: rgba(0,0,0,0.5); border-radius: 8px; padding: 1rem; } /* Overlay for text on images */
+        footer { background: #f8f9fa; padding: 2rem 0; }
+        .modal-content { background: #f0f8ff; padding: 1.5rem; } /* More padding for bigger modal */
+        .modal-body { padding: 1.5rem; } /* More padding for bigger modal */
+        .carousel-item img { height: 500px; object-fit: cover; } /* Bigger images in modal carousel */
+        .brand-box {
+             background: #5dade2;
+             color: white;
+             padding: 0.5rem 2.5rem;
+             border-radius: 6px;
+             display: inline-flex;
+             align-items: center;
+             gap: 20px; /* <-- This controls spacing between logo and text */
+             font-weight: 25;
+             min-width: 200px;
+             text-align: center;}
+
+       .logo-img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 0.5px;
+      }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand brand-box d-flex align-items-center" href="stuck2.html">
+            <img src="/New folder/1212.png" alt="Stuck Fit Logo" class="logo-img">
+            <span>Stuck Fit</span>
+            </a>
+
+
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="men.html">Men</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="womens.html">Women</a></li>  <!-- Fixed: Corrected href -->
+                    <li class="nav-item"><a class="nav-link active" href="kid.html">Kids</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="addtocart.html">Cart (0)</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="help.html">help</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="text-center">
+            <h1>Stuck Fit</h1> <!-- Changed: No box, direct styling for middle "Stuck Fit" -->
+            <p>Premium clothing for every move.</p>
+            <a href="#products" class="btn btn-light btn-lg">Shop Now</a>
+        </div>
+    </div>
+
+    <div class="container my-5" id="products">
+        <h2 class="text-center mb-4">Featured Products</h2>
+        <!-- Product Carousel/Slider with Auto-Slide -->
+        <div id="productCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000"> <!-- Auto-slide every 2 seconds -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <!-- Carousel items will be loaded via JS -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <h2 class="text-center mb-4 mt-5">All Products</h2>
+        <div class="row" id="product-grid">
+            <!-- Products loaded via JS -->
+        </div>
+    </div>
+
+    <!-- Modal for Product View - Made Even Bigger -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">  <!-- Extra large modal size -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Carousel for multiple images -->
+                            <div id="modal-image-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                                <div class="carousel-indicators" id="carousel-indicators"></div>
+                                <div class="carousel-inner" id="carousel-inner"></div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#modal-image-carousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#modal-image-carousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 id="modal-product-name"></h3>
+                            <p class="price" id="modal-product-price"></p>
+                            <p id="modal-product-desc"></p>
+                            <select class="form-select mb-3" id="modal-size">
+                                <option>Select Size</option>
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                            </select>
+                            <button class="btn btn-success" onclick="addToCart()">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <p>&copy; 2026 Stuck Fit. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample products (replace with API call in real app) - Updated: Added 'images' array and descriptions
+        const products = [
+            { id: 3, name: 'Running Sneakers', price: 4999, images: ['/new folder/1 (1).jpeg', '/new folder/1 (2).jpeg', '/new folder/1 (3).jpeg'], desc: 'Lightweight shoes for running.' },
+            { id: 4, name: 'Uday Raj', price: 2599, images: ['/new folder/1 (2).jpeg', '/new folder/1 (3).jpeg', '/new folder/1 (1).jpeg'], desc: 'Stylish apparel for everyday wear.' },
+            { id: 5, name: 'Fit T-Shirt5', price: 2999, images: ['/new folder/1 (3).jpeg', '/new folder/1 (4).jpeg', '/new folder/1 (5).jpeg'], desc: 'Premium fit tee.' },
+            { id: 6, name: 'Hoodie Supreme5', price: 3999, images: ['/new folder/1 (4).jpeg', '/new folder/1 (5).jpeg', '/new folder/1 (6).jpeg'], desc: 'Ultimate hoodie comfort.' },
+            { id: 7, name: 'Running Sneakers5', price: 5999, images: ['/new folder/1 (5).jpeg', '/new folder/1 (6).jpeg', '/new folder/1 (3).jpeg'], desc: 'Advanced running shoes.' },
+            { id: 8, name: 'Uday Raj5', price: 2599, images: ['/new folder/1 (6).jpeg', '/new folder/1 (1).jpeg', '/new folder/1 (4).jpeg'], desc: 'Casual wear essentials.' }
+        ];
+
+        // Populate Carousel
+        const carouselInner = $('.carousel-inner');
+        products.forEach((product, index) => {
+            const activeClass = index === 0 ? 'active' : '';
+            carouselInner.append(`
+                <div class="carousel-item ${activeClass}">
+                    <img src="${product.images[0]}" class="d-block w-100" alt="${product.name}">  <!-- Show first image in carousel -->
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>${product.name}</h5>
+                        <p class="price">₹${product.price}</p>
+                        <button class="btn btn-primary" onclick="viewProduct(${product.id})">View Product</button>  <!-- Updated: Triggers modal -->
+                    </div>
+                </div>
+            `);
+        });
+
+        // Populate Grid
+        const grid = $('#product-grid');
+        products.forEach(product => {
+            grid.append(`
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <img src="${product.images[0]}" class="card-img-top" alt="${product.name}">  <!-- Show first image in grid -->
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="price">₹${product.price}</p>
+                            <button class="btn btn-primary" onclick="viewProduct(${product.id})">View Product</button>  <!-- Updated: Triggers modal -->
+                        </div>
+                    </div>
+                </div>
+            `);
+        });
+     // Function to show product in modal with multiple images
+     function viewProduct(id) {
+         const product = products.find(p => p.id === id);
+         if (product) {
+             // Populate carousel with multiple images
+             const carouselInnerModal = $('#carousel-inner');
+             const carouselIndicators = $('#carousel-indicators');
+             carouselInnerModal.empty();
+             carouselIndicators.empty();
+             product.images.forEach((image, index) => {
+                 const activeClass = index === 0 ? 'active' : '';
+                 carouselInnerModal.append(`
+                     <div class="carousel-item ${activeClass}">
+                         <img src="${image}" class="d-block w-100" alt="${product.name} ${index + 1}">
+                     </div>
+                 `);
+                 carouselIndicators.append(`
+                     <button type="button" data-bs-target="#modal-image-carousel" data-bs-slide-to="${index}" class="${activeClass}" aria-label="Slide ${index + 1}"></button>
+                 `);
+             });
+             // Populate other details
+             $('#modal-product-name').text(product.name);
+             $('#modal-product-price').text('₹' + product.price);
+             $('#modal-product-desc').text(product.desc);
+             // Store product ID in modal for addToCart
+             $('#productModal').attr('data-product-id', product.id);
+             $('#productModal').modal('show');
+         }
+     }
+
+     // Add to Cart function with localStorage support
+     function addToCart() {
+         const name = $('#modal-product-name').text();
+         const price = parseInt($('#modal-product-price').text().replace('₹', '').trim());
+         const desc = $('#modal-product-desc').text();
+         const size = $('#modal-size').val();
+         // Get product ID from modal and find the product
+         const productId = $('#productModal').attr('data-product-id');
+         const product = products.find(p => p.id == productId);
+         const image = product ? product.images[0] : '';  // Use first image or empty string
+
+         if (size === "Select Size") {
+             showMessage("⚠️ Please select a size before adding to cart!", "warning");
+             return;
+         }
+
+         const cartItem = { name, price, desc, size, image };
+         let cart = JSON.parse(localStorage.getItem("cart")) || [];
+         cart.push(cartItem);
+         localStorage.setItem("cart", JSON.stringify(cart));
+
+         updateCartCount();
+         showMessage(`✅ ${name} (Size: ${size}) added to cart!`, "success");
+
+         // Redirect to main page after 2 seconds (optional)
+         setTimeout(() => {
+             window.location.href = "stuck2.html";
+         }, 50);
+     }
+// ✅ Update cart count in the navbar
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  document.querySelector('a[href="addtocart.html"]').innerText = `Cart (${cart.length})`;
+}
+
+function showMessage(message, type) {
+  const alertBox = document.createElement("div");
+  alertBox.className = `alert alert-${type} position-fixed top-0 end-0 m-4 shadow`;
+  alertBox.style.zIndex = "2000";
+  alertBox.textContent = message;
+   document.body.appendChild(alertBox);
+
+  setTimeout(() => {
+    alertBox.remove();
+  }, 2500);
+}
+
+// Update cart count in navbar
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.querySelector('a[href="addtocart.html"]').innerText = `Cart (${cart.length})`;
+}
+
+// Initialize cart count on page load
+document.addEventListener("DOMContentLoaded", updateCartCount);
+
+    </script>
+</body>
+</html>
